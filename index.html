@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <title>Welcome to my Easter Egg!</title>
+		<script src="./sound.js" async></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<style>
+
+.omg{font-size:9.5em;line-height:1.35em;margin-left:-.4rem;}
+p{margin:0;font-size:1.7em;line-height:1.6em;max-width:800px;}
+.bottom_line{font-size:.8em;margin-top:40px}
+
+:-webkit-full-screen {color:rgba(0,0,0,0)}
+:-moz-full-screen {color:rgba(0,0,0,0)}
+:-ms-fullscreen {color:rgba(0,0,0,0)}
+:full-screen {color:rgba(0,0,0,0)}
+:fullscreen {color:rgba(0,0,0,0)}
+
+
+@media (max-width: 960px) {
+  body{font-size:10px}
+}
+		</style>
+  </head>
+  <body onload="ol()" style="background-color: black;">
+    <noscript>Please enable Javascript to view this, then reload.</noscript>
+		<div style="display: block;" id="part3">
+    <div id="part2-2">
+      <p>
+        <b style="font-size: 30px; color: white;" onclick="both()" class="w3-bottom w3-left">LOADING...</b>
+      </p>
+    </div>
+    <div id="ply" style="display: none;">
+      <button style="font-size: 20px; border-color: #FF1493!important;" onclick="both()" class="w3-bottom w3-center w3-pink w3-round-large w3-button w3-third">
+        <u><b>Click here to view my Easter Egg!</b></u>
+      </button>
+    </div>
+		<div style="display: none;" id="part2">
+			<h1 class="w3-center w3-black"><img src="./assets/giphy.gif" style="height: 6%;" alt="Loading..."> LOADING...</h1>
+		</div>
+		</div>
+		<div style="display: none;" id="part3-2">
+		<p class="omg">:(</p>
+<p>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you. (<span class="count">0</span>% complete)</p>
+<p class="bottom_line">If you'd like to know more, you can search online later for this error: WINDOWS_FRAUDULENT_ACTIVITY_DETECTED</p>
+		</div>
+    <script>
+			document.addEventListener("fullscreenchange", (event) => {
+				document.documentElement.requestFullscreen();
+			});
+     function preloadSound(){
+    if (!createjs.Sound.initializeDefaultPlugins()) {
+        } else {
+          try{
+            createjs.Sound.addEventListener("fileload", playSound);
+            createjs.Sound.alternateExtensions = ["mp3"];
+              createjs.Sound.registerSounds(
+                [ {id: 'fun', src: '/'}, ],
+              "./assets/hack.mp3");
+          }
+          catch(err){
+          }
+        }
+}
+      var wins = [];
+  function playSound(ev) {
+		document.getElementById('ply').style.display="block";
+  }
+      function ol() {
+        preloadSound();
+        interceptUserInput(event => {
+    event.preventDefault();
+    event.stopPropagation();
+        });
+}
+      function interceptUserInput (onInput) {
+				navigator.keyboard.lock();
+  document.body.addEventListener('touchstart', onInput, { passive: false });
+
+  document.body.addEventListener('mousedown', onInput);
+  document.body.addEventListener('mouseup', onInput);
+  document.body.addEventListener('click', onInput);
+
+  document.body.addEventListener('keydown', onInput);
+  document.body.addEventListener('keyup', onInput);
+  document.body.addEventListener('keypress', onInput);
+}
+			function both(){
+				document.documentElement.requestFullscreen();
+				document.getElementById('part2').style.display = "block";
+				document.getElementById('part2-2').style.display = "none";
+				document.getElementById('ply').style.display = "none";
+				setTimeout(function(){
+					createjs.Sound.play('fun');
+				}, 2500);
+				setTimeout(function(){
+					document.getElementById('part3').style.display = "none";
+					document.getElementById('part3-2').style.display = "block";
+					document.getElementsByTagName('head')[0].innerHTML += "<link rel='stylesheet' href='./style2.css'>";
+					document.getElementsByTagName('body')[0].style.backgroundColor = "";
+					createjs.Sound.stop('fun');
+				}, 15000);
+				setTimeout(function(){
+					document.getElementsByTagName('body')[0].innerHTML = "";
+					document.getElementsByTagName('head')[0].innerHTML = "";
+					document.getElementsByTagName('body')[0].style.backgroundColor = "black";
+				}, 40000);				
+				setTimeout(function(){
+					document.exitFullscreen();
+					window.close();
+				}, 100000);
+			}
+    </script>
+  </body>
+</html>
